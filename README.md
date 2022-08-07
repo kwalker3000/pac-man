@@ -26,9 +26,7 @@ Recreate classic Pac-Man game with vanilla javascript and css.
 
 ### Screenshot
 
-
-
-<img alt="collage of various components seen on the website" src="./site-preview.png" width=600>
+<img alt="screenshot of game" src="./screenshot.png" width=600>
 
 ### Links
 
@@ -37,6 +35,8 @@ Recreate classic Pac-Man game with vanilla javascript and css.
 ### My process
 
 This was a project I completed several months ago.
+
+**The game is built upon various `setTimeout` loops. This is also case for player (pac-man) movement. Each time an arrow key is pressed the loop is reset. If nothing is pressed pac-man will continuously move in open space.**
 
 I read up on a lot of the original Pac-Man logic and tried to mimic it as much as I could. Things like:
  - individual speeds
