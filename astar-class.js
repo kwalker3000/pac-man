@@ -89,7 +89,7 @@ class Astar {
                 do {
                     result.push([myPath.row, myPath.col]);
                 }
-                while (myPath = myPath.next); // what is this doing?
+                while (myPath = myPath.next); 
                 worldArray = [];
                 closed = [];
                 open = [];

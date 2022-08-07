@@ -423,6 +423,5 @@ inky.checkGhostStatus();
 pinky.checkGhostStatus();
 clyde.checkGhostStatus();
 
-console.log(blinky)
 
 
