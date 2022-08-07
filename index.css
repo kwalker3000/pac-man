@@ -1,0 +1,648 @@
+/* board layout */
+
+html, body {
+    margin: 10;
+    padding: 10;
+    background:rgb(223, 210, 210);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h3 {
+    margin: 5px;
+    font-family: monospace;
+}
+
+.container {
+    display: flex;
+    
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 420px;
+    height: 420px;
+    border: solid black;
+    background: black;
+}
+
+.grid > div, .empty {
+    width: 15px;
+    height: 15px;
+    box-sizing: border-box; 
+}
+
+.lives {
+    height: 45px;
+    width: 15px;
+    box-sizing: border-box;
+    background: rgba(235, 68, 68, 0.842);
+}
+
+.wall {
+    background-color: rgb(0, 0, 139);
+    
+}
+
+.completed-level-fx {
+    background-color: rgb(0, 0, 139);
+    animation: level-completed .35s 3;
+}
+
+@keyframes level-completed {
+    /* 0% {
+        background-color: white;
+    }
+    20% {
+        background-color: rgb(0, 0, 139);
+    }
+    40% {
+        background-color: white;
+    }
+    60% {
+        background-color: rgb(0, 0, 139);
+    } */
+    100% {
+        background-color: white;
+    }
+    /* 15% {
+        background-color: rgb(0, 0, 139);
+    } */
+}
+
+.wall-style {
+    border: 1px solid black;
+}
+
+.top-right-corner {
+    border-top-right-radius: 10px;
+}
+
+.top-left-corner {
+    border-top-left-radius: 10px;
+}
+
+.bottom-right-corner {
+    border-bottom-right-radius: 10px;
+}
+
+.bottom-left-corner {
+    border-bottom-left-radius: 10px;
+}
+
+.empty, .pellet, .power-pellet {
+    background: black;
+}
+
+.pellet {
+    background-image: url('./images/board/dot.svg');
+    width: 0;
+    background-size: contain;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* .power-pellet */
+.power-pellet {
+    background-image: url('./images/board/power.svg');
+    width: 100%;
+    background-size: contain;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: blink .3s infinite;
+}
+
+@keyframes blink {
+    0% {
+        background-image: url('./images/board/power.svg');
+    }
+    50% {
+        background-image: url('./images/board/power-black.svg');
+    }
+    100% {
+        background-image: url('./images/board/power.svg');
+    }
+}
+
+/* power-pellet, board transformation */
+
+.power-right-border,
+.power-left-border,
+.power-top-border,
+.power-bottom-border {
+    position: relative;
+}
+
+.power-right-border {
+    border-right: 2px double red;
+}
+
+.power-left-border {
+    border-left: 2px double red;
+}
+
+.power-top-border {
+    border-top: 2px double red;
+}
+
+.power-bottom-border {
+    border-bottom: 2px double red;
+}
+
+.power-right-border:before,
+.power-left-border:before,
+.power-top-border:before,
+.power-bottom-border:before {
+    content: " ";
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+}
+
+.power-right-border:before {
+    border-right: 1px double #ffea00;
+}
+
+.power-left-border:before {
+    border-left: 1px double #ffea00;
+}
+
+.power-top-border:before {
+    border-top: 1px double #ffea00;
+}
+
+.power-bottom-border:before {
+    border-bottom: 1px double #ffea00;
+}
+
+
+.power-wall {
+    background-color: black;
+}
+
+.power-top-right-corner {
+    border-right: 2px double red;
+    border-top: 2px double red;
+    position: relative;
+}
+
+.power-top-left-corner {
+    border-left: 2px double red;
+    border-top: 2px double red;
+    position: relative;
+}
+
+.power-bottom-right-corner {
+    border-right: 2px double red;
+    border-bottom: 2px double red;
+    position: relative;
+}
+
+.power-bottom-left-corner {
+    border-left: 2px double red;
+    border-bottom: 2px double red;
+    position: relative;
+}
+
+.power-top-right-corner:before,
+.power-top-left-corner:before,
+.power-bottom-right-corner:before,
+.power-bottom-left-corner:before {
+    content: " ";
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+}
+
+.power-top-right-corner:before {
+    border-top-right-radius: 8px;
+    border-right: 1px double #ffea00;
+    border-top: 1px double #ffea00;
+}
+
+.power-top-left-corner:before {
+    border-top-left-radius: 8px;
+    border-left: 1px double #ffea00;
+    border-top: 1px double #ffea00;
+}
+
+.power-bottom-right-corner:before {
+    border-bottom-right-radius: 8px;
+    border-right: 1px double #ffea00;
+    border-bottom: 1px double #ffea00;
+}
+
+.power-bottom-left-corner:before {
+    border-bottom-left-radius: 8px;
+    border-left: 1px double #ffea00;
+    border-bottom: 1px double #ffea00;
+}
+
+/* ghost-doors *not being used */
+
+.ghost-gate {
+    border-top: 1px black solid;
+}
+
+.ghost-lair {
+    background: black;
+}
+
+.power-ghost-lair {
+    background: rgb(223, 210, 210);
+}
+
+.doors {
+    width: 1%;
+    height: 4px;
+    background: rgba(235, 68, 68, 0.842);
+    animation: open-doors 2s infinite reverse;
+}
+
+@keyframes open-doors {
+    0% {
+        width: 1%;
+    }
+    5% {
+        width: 10%;
+    }
+    10% {
+        width: 20%;
+    }
+    15% {
+        width: 30%;
+    }
+    20% {
+        width: 40%;
+    }
+    25% {
+        width: 50%;
+    }
+    30% {
+        width: 60%;
+    }
+    35% {
+        width: 70%;
+    }
+    40% {
+        width: 80%;
+    }
+    45% {
+        width: 90%;
+    }
+    50% {
+        width: 100%;
+    }
+
+    55% {
+        width: 110%;
+    }
+    60% {
+        width: 120%;
+    }
+    65% {
+        width: 130%;
+    }
+    70% {
+        width: 140%;
+    }
+    75% {
+        width: 150%;
+    }
+    80% {
+        width: 160%;
+    }
+    85% {
+        width: 170%;
+    }
+    90% {
+        width: 180%;
+    }
+    95% {
+        width: 190%;
+    }
+    100% {
+        width: 200%;
+    }
+}
+
+/* character images on board */
+
+.clyde, 
+.blinky, 
+.inky, 
+.pinky, 
+.pacman, 
+.pacman-death,
+.frighten-ghost,
+.frighten-ghost-white,
+.eye-right,
+.eye-left,
+.eye-up,
+.eye-down,
+.eat-fx,
+.ghost-body,
+.cherry,
+.bonus {
+    width: 100%;
+    background-size: contain;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bonus {
+    background-image: url(./images/board/bonus-100.svg);
+}
+
+.cherry {
+    background-image: url(./images/board/cherry-fruit.svg);
+}
+
+.clyde-right {
+    background-image: url(./images/ghosts/clyde-right.svg);
+}
+
+.clyde-left {
+    background-image: url(./images/ghosts/clyde-left.svg);
+}
+
+.clyde-up {
+    background-image: url(./images/ghosts/clyde-up.svg);
+}
+
+.clyde-down {
+    background-image: url(./images/ghosts/clyde-down.svg);
+}
+
+.blinky-right {
+    background-image: url(./images/ghosts/blinky-right.svg);
+}
+
+.blinky-left {
+    background-image: url(./images/ghosts/blinky-left.svg);
+}
+
+.blinky-up {
+    background-image: url(./images/ghosts/blinky-up.svg);
+}
+
+.blinky-down {
+    background-image: url(./images/ghosts/blinky-down.svg);
+}
+
+.inky-right {
+    background-image: url(./images/ghosts/inky-right.svg);
+}
+
+.inky-left {
+    background-image: url(./images/ghosts/inky-left.svg);
+}
+
+.inky-up {
+    background-image: url(./images/ghosts/inky-up.svg);
+}
+
+.inky-down {
+    background-image: url(./images/ghosts/inky-down.svg);
+}
+
+.pinky-right {
+    background-image: url(./images/ghosts/pinky-right.svg);
+}
+
+.pinky-left {
+    background-image: url(./images/ghosts/pinky-left.svg);
+}
+
+.pinky-up {
+    background-image: url(./images/ghosts/pinky-up.svg);
+}
+
+.pinky-down {
+    background-image: url(./images/ghosts/pinky-down.svg);
+}
+
+.frighten-ghost {
+    background-image: url(./images/ghosts/frighten-ghost.svg);
+}
+
+.frighten-ghost-white {
+    background-image: url(./images/ghosts/frighten-ghost-white.svg);
+}
+
+.eye-right {
+    background-image: url(./images/ghosts/eye-right.svg);
+}
+
+.eye-left {
+    background-image: url(./images/ghosts/eye-left.svg);
+}
+
+.eye-up {
+    background-image: url(./images/ghosts/eye-up.svg);
+}
+
+.eye-down {
+    background-image: url(./images/ghosts/eye-down.svg);
+}
+
+.eat-fx {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    animation: eaten .5s 1;
+}
+
+@keyframes eaten {
+    0% {
+        background-image: url(./images/ghosts/eat-fx.svg);
+    }
+    100% {
+        background-image: url(./images/ghosts/eat-fx.svg);
+    }
+}
+
+
+.pacman {
+    width: 100%;
+    background-size: cover;  
+    animation-timing-function: linear;
+    animation: eating .5s infinite;
+}
+
+.pacman-death {
+    width: 100%;
+    background-size: cover;
+    transform: rotate(0);
+    animation-delay: 250ms;
+    animation-timing-function: linear;
+    animation: death 2.5s 1;
+}
+
+.pacman-right {
+    transform: rotate(0);
+}
+
+.pacman-left {
+    transform: rotate(0);
+    transform: rotate(180deg);
+}
+
+.pacman-left > div {
+    transform: rotate(-180deg);
+}
+
+.pacman-up {
+    transform: rotate(0);
+    transform: rotate(-90deg);
+}
+
+.pacman-up > div {
+    transform: rotate(90deg);
+}
+
+.pacman-down {
+    transform: rotate(0);
+    transform: rotate(90deg);
+}
+
+.pacman-down > div {
+    transform: rotate(-90deg);
+}
+
+
+@keyframes eating {
+    0% {
+        background-image: url(./images/pacman/pacman-open-full100.svg);
+    }
+    5% {
+        background-image: url(./images/pacman/pacman80.svg);
+    }
+    10% {
+        background-image: url(./images/pacman/pacman60.svg);
+    }
+    15% {
+        background-image: url(./images/pacman/pacman40.svg);
+    }
+    20% {
+        background-image: url(./images/pacman/pacman20.svg);
+    }
+    25% {
+        background-image: url(./images/pacman/pacman0.svg);
+    }
+    30% {
+        background-image: url(./images/pacman/pacman20.svg);
+    }
+    35% {
+        background-image: url(./images/pacman/pacman40.svg);
+    }
+    40% {
+        background-image: url(./images/pacman/pacman60.svg);
+    }
+    45% {
+        background-image: url(./images/pacman/pacman80.svg);
+    }
+    50% {
+        background-image: url(./images/pacman/pacman-open-full100.svg);
+    }
+
+    55% {
+        background-image: url(./images/pacman/pacman80.svg);
+    }
+    60% {
+        background-image: url(./images/pacman/pacman60.svg);
+    }
+    65% {
+        background-image: url(./images/pacman/pacman40.svg);
+    }
+    70% {
+        background-image: url(./images/pacman/pacman20.svg);
+    }
+    75% {
+        background-image: url(./images/pacman/pacman0.svg);
+    }
+    80% {
+        background-image: url(./images/pacman/pacman20.svg);
+    }
+    85% {
+        background-image: url(./images/pacman/pacman40.svg);
+    }
+    90% {
+        background-image: url(./images/pacman/pacman60.svg);
+    }
+    95% {
+        background-image: url(./images/pacman/pacman80.svg);
+    }
+    100% {
+        background-image: url(./images/pacman/pacman-open-full100.svg);
+    }
+}
+
+@keyframes death {
+    0% {
+        background-image: url(./images/pacman/pacman-death0.svg);
+    }
+    7% {
+        background-image: url(./images/pacman/pacman-death1.svg);
+    }
+    15% {
+        background-image: url(./images/pacman/pacman-death2.svg);
+    }
+    22% {
+        background-image: url(./images/pacman/pacman-death3.svg);
+    }
+    30% {
+        background-image: url(./images/pacman/pacman-death4.svg);
+    }
+    35% {
+        background-image: url(./images/pacman/pacman-death5.svg);
+    }
+    42% {
+        background-image: url(./images/pacman/pacman-death6.svg);
+    }
+    49% {
+        background-image: url(./images/pacman/pacman-death7.svg);
+    }
+    56% {
+        background-image: url(./images/pacman/pacman-death8.svg);
+    }
+    62% {
+        background-image: url(./images/pacman/pacman-death9.svg);
+    }
+    68% {
+        background-image: url(./images/pacman/pacman-death10.svg);
+    }
+
+    75% {
+        background-image: url(./images/pacman/pacman-death11.svg);
+    }
+    82% {
+        background-image: url(./images/pacman/pacman-death12.svg);
+    }
+    88% {
+        background-image: url(./images/pacman/pacman-death13.svg);
+    }
+    92% {
+        background-image: url(./images/pacman/pacman-death14.svg);
+    }
+    96% {
+        background-image: url(./images/pacman/pacman-death15.svg);
+    }
+    100% {
+        background-image: url(./images/pacman/pacman-death15.svg);
+    }
+}
+
