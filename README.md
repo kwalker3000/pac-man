@@ -30,7 +30,7 @@ Recreate classic Pac-Man game with vanilla javascript and css.
 
 ### Links
 
-- Live Site URL: [Pac-Man](https://audiophile-tan.vercel.app/)
+- Live Site URL: [Pac-Man](https://kwalker3000.github.io/pac-man/)
 
 ### My process
 
